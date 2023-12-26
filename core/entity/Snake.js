@@ -19,15 +19,12 @@ export class Snake {
         const positionInitial = new Position(positionX, positionY)
         this.positions.push(positionInitial)
 
-        const observer = new Observer
-        this.on = observer.on
-        this.emit = observer.emit
+        const { on, emit } = new Observer
+        this.on = on
+        this.emit = emit
 
         document.addEventListener('keydown', ({ key }) => {
-            if (!this.newPosition[key]) return
-            if (this.direction !== key) {
-                this.direction = key
-            }
+            this.changeDirection(key)
         })
     }
 
@@ -44,7 +41,8 @@ export class Snake {
     }
 
     changeDirection(direction) {
-        if (!this.getNewPosition[direction]) return
+        if (!this.newPosition[direction]) return
+        if (this.direction === direction) return
         if (this.direction === direction) return
         this.direction = direction
     }
