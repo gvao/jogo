@@ -5,39 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            height: 100%;
-        }
-
-        body {
-            background-color: aquamarine;
-            height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        #game {
-            display: flex;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        canvas {
-            border: 1px solid;
-            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-        }
-    </style>
-
+    <link rel="stylesheet" href="styles/index.css">
     <title>Jogo</title>
 </head>
 
@@ -46,8 +14,16 @@
 
     <section id="game">
         <canvas width="300" height="300"></canvas>
-
     </section>
+
+    <div class="popup">
+        <div class="popup__content">
+            <button class="popup__close">X</button>
+            <h2>Sua pontuação é: <span id="score">0</span></h2>
+
+            <button class="play-again">Jogar novamente</button>
+        </div>
+    </div>
 
     <script type="module" src="./index.js"></script>
 </body>
