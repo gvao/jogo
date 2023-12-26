@@ -43,7 +43,12 @@ export class Snake {
     changeDirection(direction) {
         if (!this.newPosition[direction]) return
         if (this.direction === direction) return
-        if (this.direction === direction) return
+
+        if (this.direction === 'ArrowDown' && direction === 'ArrowUp') return
+        if (this.direction === 'ArrowUp' && direction === 'ArrowDown') return
+        if (this.direction === 'ArrowLeft' && direction === 'ArrowRight') return
+        if (this.direction === 'ArrowRight' && direction === 'ArrowLeft') return
+        
         this.direction = direction
     }
 
