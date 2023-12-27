@@ -2,20 +2,28 @@ import { Canvas } from './Canvas.js';
 import { Snake } from './Snake.js';
 import { Fruit } from './Fruit.js';
 import { Position } from './position.js';
+import { View } from './View.js';
 
 export class Game {
-    snake = new Snake(1, 1);
+    /** @type {Snake} */
+    snake;
     /** @type {Canvas} */
     canvas;
     /** @type {Fruit} */
     fruit
+    /** @type {View} */
+    view
 
-    constructor(canvas) {
+    constructor(canvas, view) {
         this.canvas = canvas
+        this.view = view
         this.limit = new Position(this.canvas.divider, this.canvas.divider)
     }
 
     init() {
+        const { x, y } = this.getRandomPosition()
+        this.snake = new Snake(x, y)
+        this.view.hidePopup()
         this.addFruit()
         this.drawSnake()
         this.snake.run(this.limit)
@@ -26,7 +34,10 @@ export class Game {
                 this.addFruit()
             }
 
-            if (this.isTailCollision()) this.gameOver()
+            if (this.isTailCollision()) {
+                console.log("Tail Collision")
+                this.gameOver()
+            }
 
             this.render()
         })
@@ -34,6 +45,7 @@ export class Game {
 
     gameOver() {
         this.snake.stop()
+        this.view.showPopup(`seu score é ${this.snake.positions.length}`)
     }
 
     isFruitCollision() {
